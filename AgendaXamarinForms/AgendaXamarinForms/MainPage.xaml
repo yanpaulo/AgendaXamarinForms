@@ -2,13 +2,29 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:AgendaXamarinForms"
-             x:Class="AgendaXamarinForms.MainPage">
+             x:Class="AgendaXamarinForms.MainPage"
+             Appearing="ContentPage_Appearing"
+             Title="Agenda Xamarin Forms"
+             >
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Text="Meus Contatos"></Label>
+
+        <ListView ItemSelected="ListView_ItemSelected" ItemsSource="{Binding}" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Nome}" Detail="{Binding Telefone}"></TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Grid.Row="2" Text="Novo Contato" Clicked="Button_Clicked"></Button>
+    </Grid>
 
 </ContentPage>
